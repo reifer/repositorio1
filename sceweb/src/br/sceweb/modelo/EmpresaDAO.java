@@ -6,7 +6,7 @@ import com.mysql.jdbc.PreparedStatement;
 import br.sceweb.servico.FabricaDeConexoes;
 
 public class EmpresaDAO {
-	public int adiciona(Empresa empresa) {
+	public int adiciona(Empresa2 empresa) {
 		PreparedStatement ps;
 		int codigoRetorno = 0;
 		try (Connection conn = new FabricaDeConexoes().getConnection()) {
