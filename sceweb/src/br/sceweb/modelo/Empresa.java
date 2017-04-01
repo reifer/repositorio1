@@ -7,16 +7,36 @@ import java.util.InputMismatchException;
  * 
  * @author esadv6
  *
+ * @version $Revision: 1.0 $
  */
 public class Empresa {
+	/**
+	 * Field cnpj.
+	 */
 	String cnpj;
+	/**
+	 * Field nomeDaEmpresa.
+	 */
 	String nomeDaEmpresa;
+	/**
+	 * Field nomeFantasia.
+	 */
 	String nomeFantasia;
+	/**
+	 * Field endereco.
+	 */
 	String endereco;
+	/**
+	 * Field telefone.
+	 */
 	String telefone;
 
 	/*
 	 * Obtem cnpj
+	 */
+	/**
+	 * Method getCnpj.
+	 * @return String
 	 */
 	public String getCnpj() {
 		return cnpj;
@@ -24,6 +44,10 @@ public class Empresa {
 
 	/*
 	 * atribui o cnpj vefica se o cnpj é valido
+	 */
+	/**
+	 * Method setCnpj.
+	 * @param cnpj String
 	 */
 	public void setCnpj(String cnpj) {
 		if (isValido(cnpj)) {
@@ -35,6 +59,11 @@ public class Empresa {
 
 	/*
 	 * valida o cnpj
+	 */
+	/**
+	 * Method isValido.
+	 * @param cnpj String
+	 * @return boolean
 	 */
 	public boolean isValido(String cnpj) {
 		char dig13, dig14;
@@ -95,10 +124,18 @@ public class Empresa {
 		}
 	}
 
+	/**
+	 * Method getNomeDaEmpresa.
+	 * @return String
+	 */
 	public String getNomeDaEmpresa() {
 		return nomeDaEmpresa;
 	}
 
+	/**
+	 * Method setNomeDaEmpresa.
+	 * @param nomeDaEmpresa String
+	 */
 	public void setNomeDaEmpresa(String nomeDaEmpresa) {
 		if (nomeDaEmpresa.equals("")) {
 			this.nomeDaEmpresa = nomeDaEmpresa;
@@ -108,30 +145,59 @@ public class Empresa {
 
 	}
 
+	/**
+	 * Method getNomeFantasia.
+	 * @return String
+	 */
 	public String getNomeFantasia() {
 		return nomeFantasia;
 	}
 
+	/**
+	 * Method setNomeFantasia.
+	 * @param nomeFantasia String
+	 */
 	public void setNomeFantasia(String nomeFantasia) {
 		this.nomeFantasia = nomeFantasia;
 	}
 
+	/**
+	 * Method getEndereco.
+	 * @return String
+	 */
 	public String getEndereco() {
 		return endereco;
 	}
 
+	/**
+	 * Method setEndereco.
+	 * @param endereco String
+	 */
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
 
+	/**
+	 * Method getTelefone.
+	 * @return String
+	 */
 	public String getTelefone() {
 		return telefone;
 	}
 
+	/**
+	 * Method setTelefone.
+	 * @param telefone String
+	 */
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
+	/**
+	 * Method equals.
+	 * @param obj Object
+	 * @return boolean
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

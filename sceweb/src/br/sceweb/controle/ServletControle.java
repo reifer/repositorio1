@@ -13,12 +13,30 @@ import br.sceweb.modelo.EmpresaDAO;
 
 /**
  * Servlet implementation class ServletControle
+ * @author Lab103
+ * @version $Revision: 1.0 $
  */
 public class ServletControle extends HttpServlet {
+	/**
+	 * Field serialVersionUID.
+	 * (value is 1)
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Field logger.
+	 */
 	Logger logger = Logger.getLogger(ServletControle.class);
+	/**
+	 * Field mensagem.
+	 */
 	String mensagem = "";
+	/**
+	 * Field empresaDAO.
+	 */
 	EmpresaDAO empresaDAO;
+	/**
+	 * Field cnpjParaExclusao.
+	 */
 	String cnpjParaExclusao = "";// seta o cnpj para exclusao
 
 	/**
@@ -30,17 +48,25 @@ public class ServletControle extends HttpServlet {
 	}
 
 	/**
+	
+	 * @param request HttpServletRequest isso é uma variavel de requisicao
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	 *      response) */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
+	
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * Method doPost.
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -48,6 +74,13 @@ public class ServletControle extends HttpServlet {
 		executaComando(request, response);
 	}
 
+	/**
+	 * Method executaComando.
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void executaComando(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String parametro = request.getParameter("acao");
@@ -108,6 +141,15 @@ public class ServletControle extends HttpServlet {
 
 	}
 
+	/**
+	 * Method cadastrarEmpresa.
+	 * @param cnpj String
+	 * @param nomeDaEmpresa String
+	 * @param nomeFantasia String
+	 * @param endereco String
+	 * @param telefone String
+	 * @return String
+	 */
 	public String cadastrarEmpresa(String cnpj, String nomeDaEmpresa,
 			String nomeFantasia, String endereco, String telefone) {
 		String msg = "";
@@ -129,12 +171,22 @@ public class ServletControle extends HttpServlet {
 		return msg;
 	}
 
+	/**
+	 * Method consulta.
+	 * @param cnpj String
+	 * @return Empresa
+	 */
 	public Empresa consulta(String cnpj) {
 		logger.info("consulta empresa 2 = " + cnpj);
 		EmpresaDAO empresaDAO = new EmpresaDAO();
 		return empresaDAO.consultaEmpresa(cnpj);
 	}
 
+	/**
+	 * Method excluirEmpresa.
+	 * @param cnpj String
+	 * @return String
+	 */
 	public String excluirEmpresa(String cnpj) {
 		String msg = "";
 		EmpresaDAO empresaDAO = new EmpresaDAO();

@@ -7,7 +7,16 @@ import com.mysql.jdbc.PreparedStatement;
 
 import br.sceweb.servico.FabricaDeConexoes;
 
+/**
+ * @author Lab103
+ * @version $Revision: 1.0 $
+ */
 public class EmpresaDAO {
+	/**
+	 * Method adiciona.
+	 * @param empresa Empresa
+	
+	 * @return int */
 	public int adiciona(Empresa empresa) {
 		PreparedStatement ps;
 		int codigoRetorno = 0;
@@ -31,8 +40,8 @@ public class EmpresaDAO {
 	 * exclui uma empresa pelo cnpj
 	 * 
 	 * @param cnpj
-	 * @return 0 erro na exclusao ou 1 excluido com sucesso
-	 */
+	
+	 * @return 0 erro na exclusao ou 1 excluido com sucesso */
 	public int exclui(String cnpj) {
 		java.sql.PreparedStatement ps;
 		int codigoretorno = 0;
@@ -46,6 +55,11 @@ public class EmpresaDAO {
 		return codigoretorno;
 	}
 
+	/**
+	 * Method consultaEmpresa.
+	 * @param cnpj String
+	
+	 * @return Empresa */
 	public Empresa consultaEmpresa(String cnpj) {
 		Empresa empresa = null;
 		empresa = new Empresa();
