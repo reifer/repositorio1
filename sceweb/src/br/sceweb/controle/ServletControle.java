@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import br.sceweb.modelo.Empresa2;
+import br.sceweb.modelo.Empresa;
 import br.sceweb.modelo.EmpresaDAO;
 
 /**
@@ -33,8 +33,8 @@ public class ServletControle extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
@@ -42,14 +42,14 @@ public class ServletControle extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("erro", null);
 		executaComando(request, response);
 	}
 
-	protected void executaComando(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void executaComando(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		String parametro = request.getParameter("acao");
 		logger.info("acao do servletcontrole = " + parametro);
 		String url = "";
@@ -58,8 +58,10 @@ public class ServletControle extends HttpServlet {
 		if (parametro.equals("IncluirEmpresa")) {
 			url = "/visao/FormEmpresa.jsp";
 			try {
-				resultado = cadastrarEmpresa(request.getParameter("txtCNPJ"), request.getParameter("txtNomeDaEmpresa"),
-						request.getParameter("txtNomeFantasia"), request.getParameter("txtEndereco"),
+				resultado = cadastrarEmpresa(request.getParameter("txtCNPJ"),
+						request.getParameter("txtNomeDaEmpresa"),
+						request.getParameter("txtNomeFantasia"),
+						request.getParameter("txtEndereco"),
 						request.getParameter("txtTelefone"));
 				logger.info("resultado do cadastra = " + resultado);
 				request.setAttribute("msg", resultado);
@@ -73,17 +75,20 @@ public class ServletControle extends HttpServlet {
 		}
 		if (parametro.equals("ConsultarEmpresa")) {
 			url = "/visao/FormEmpresa.jsp";
-			Empresa2 empresa = new Empresa2();
+			Empresa empresa = new Empresa();
 			String cnpj = request.getParameter("txtCNPJ");
 			logger.info("consulta empresa  = " + cnpj);
 			try {
 				if (!cnpj.isEmpty()) {
-					//empresa = consulta(cnpj);
+					empresa = consulta(cnpj);
 					if (empresa != null) {
-						logger.info("consulta empresa nome da empresa  = " + empresa.getNomeDaEmpresa());
-						request.setAttribute("nomeDaEmpresa", empresa.getNomeDaEmpresa());
+						logger.info("consulta empresa nome da empresa  = "
+								+ empresa.getNomeDaEmpresa());
+						request.setAttribute("nomeDaEmpresa",
+								empresa.getNomeDaEmpresa());
 						request.setAttribute("cnpj", empresa.getCnpj());
-						request.setAttribute("nomeFantasia", empresa.getNomeFantasia());
+						request.setAttribute("nomeFantasia",
+								empresa.getNomeFantasia());
 						request.setAttribute("endereco", empresa.getEndereco());
 						request.setAttribute("telefone", empresa.getTelefone());
 						request.setAttribute("msg", "");
@@ -103,10 +108,10 @@ public class ServletControle extends HttpServlet {
 
 	}
 
-	public String cadastrarEmpresa(String cnpj, String nomeDaEmpresa, String nomeFantasia, String endereco,
-			String telefone) {
+	public String cadastrarEmpresa(String cnpj, String nomeDaEmpresa,
+			String nomeFantasia, String endereco, String telefone) {
 		String msg = "";
-		Empresa2 empresa = new Empresa2();
+		Empresa empresa = new Empresa();
 		EmpresaDAO empresaDAO = new EmpresaDAO();
 		try {
 			empresa.setCnpj(cnpj);
@@ -124,11 +129,11 @@ public class ServletControle extends HttpServlet {
 		return msg;
 	}
 
-	/*public Empresa consulta(String cnpj) {
+	public Empresa consulta(String cnpj) {
 		logger.info("consulta empresa 2 = " + cnpj);
 		EmpresaDAO empresaDAO = new EmpresaDAO();
-		// return empresaDAO.consultaEmpresa(cnpj);
-	}*/
+		return empresaDAO.consultaEmpresa(cnpj);
+	}
 
 	public String excluirEmpresa(String cnpj) {
 		String msg = "";
@@ -143,43 +148,3 @@ public class ServletControle extends HttpServlet {
 		return msg;
 	}
 }
-
-/*
- * package br.sceweb.controle;
- * 
- * import java.io.IOException; import javax.servlet.ServletException; import
- * javax.servlet.http.HttpServlet; import javax.servlet.http.HttpServletRequest;
- * import javax.servlet.http.HttpServletResponse;
- * 
- * import org.apache.log4j.Logger;
- * 
- * import br.sceweb.modelo.Empresa; import br.sceweb.modelo.EmpresaDAO;
- * 
- * /** //Servlet implementation class ServletControle public class
- * ServletControle extends HttpServlet { private static final long
- * serialVersionUID = 1L;
- * 
- * /** // Default constructor.
- * 
- * public ServletControle() { // TODO Auto-generated constructor stub
- * 
- * }
- * 
- * /** // @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
- * // response)
- * 
- * protected void doGet(HttpServletRequest request, HttpServletResponse
- * response) throws ServletException, IOException { // TODO Auto-generated
- * method stub }
- * 
- * /** //* @see HttpServlet#doPost(HttpServletRequest request,
- * HttpServletResponse //* response)
- * 
- * protected void doPost(HttpServletRequest request, HttpServletResponse
- * response) throws ServletException, IOException {
- * 
- * }
- * 
- * 
- * }
- */
